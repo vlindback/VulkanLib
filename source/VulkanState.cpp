@@ -16,4 +16,9 @@ namespace vlindback::VulkanLib
     {
         m_physicalDevice = device;
     }
+
+    vk::Instance VulkanState::Instance() noexcept
+    {
+        return m_instance.get();
+    }
 }

@@ -26,6 +26,41 @@ namespace vlindback::VulkanLib
         
         state.SetInstancePtr(vk::createInstance(instanceCreateInfo));
 
+
+
+        // Find an appropriate physical device.
+        // TODO: check if empty. let user know
+        std::vector availablePhysicalDevices = state.Instance().enumeratePhysicalDevices();
+
+        bool physicalDeviceFound = false;
+
+        // Do we not have a preset device?
+        if (!m_presetPhysicalDeviceName.empty())
+        {
+            // Blindly trust the user, just use this device if it exists.
+
+            physicalDeviceFound = true;
+
+            for (vk::PhysicalDevice device : availablePhysicalDevices)
+            {
+                vk::PhysicalDeviceProperties deviceProperties = device.getProperties();
+                if (std::strcmp(deviceProperties.deviceName, m_presetPhysicalDeviceName.c_str()) == 0)
+                {
+                    physicalDeviceFound = true;
+                    state.SetPhysicalDevicePtr(device);
+                }
+            }
+        }
+        
+        // In case there's no preset, or the preset was missing, we search for an
+        // appropriate device.
+        if (!physicalDeviceFound)
+        {
+
+        }
+
+
+
         return state;
     }
 
@@ -47,5 +82,10 @@ namespace vlindback::VulkanLib
     void VulkanInitialization::AddDeviceExtension(std::string_view name)
     {
         m_deviceExtensions.emplace_back(name);
+    }
+
+    void VulkanInitialization::SetPresetPhysicalDeviceName(std::string_view name)
+    {
+        m_presetPhysicalDeviceName = name;
     }
 }

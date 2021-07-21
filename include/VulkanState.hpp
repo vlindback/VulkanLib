@@ -12,6 +12,9 @@ namespace vlindback::VulkanLib
             void SetInstancePtr(vk::Instance instance);
             void SetPhysicalDevicePtr(vk::PhysicalDevice device);
 
+            vk::Instance Instance() noexcept;
+            
+
         private:
 
             vk::UniqueInstance m_instance;

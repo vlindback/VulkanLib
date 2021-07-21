@@ -20,9 +20,11 @@ namespace vlindback::VulkanLib
             void AddDeviceLayer(std::string_view name);
             void AddDeviceExtension(std::string_view name);
 
+            void SetPresetPhysicalDeviceName(std::string_view name);
 
         private:
 
+            std::string m_presetPhysicalDeviceName;
             std::string m_applicationName;
             std::string m_engineName;
             std::uint32_t m_applicationVersion = 0;
