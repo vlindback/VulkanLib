@@ -18,8 +18,8 @@ namespace vlindback::VulkanLib
         private:
 
             vk::UniqueInstance m_instance;
-            vk::PhysicalDevice m_physicalDevice;
             vk::UniqueDevice m_device;
-
+            vk::PhysicalDevice m_physicalDevice;
+            std::vector<vk::PhysicalDevice> m_availablePhysicalDevices;
     };
 }
