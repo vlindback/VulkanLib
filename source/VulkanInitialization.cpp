@@ -1,5 +1,7 @@
 #include "VulkanInitialization.hpp"
 
+#include "VulkanPhysicalDeviceMatch.hpp"
+
 #include <exception>
 
 namespace vlindback::VulkanLib
@@ -56,7 +58,8 @@ namespace vlindback::VulkanLib
         // appropriate device.
         if (!physicalDeviceFound)
         {
-
+            VulkanPhysicalDeviceMatch deviceMatcher;
+            std::vector deviceMatches = deviceMatcher.GetSupportedDevices(availablePhysicalDevices);
         }
 
 

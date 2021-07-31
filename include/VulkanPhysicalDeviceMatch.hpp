@@ -6,18 +6,24 @@
 
 namespace vlindback::VulkanLib
 {
+    struct PhysicalDeviceMatch
+    {
+        vk::PhysicalDevice devicePtr;
+        std::size_t deviceMatchScore;
+    };
+
     class VulkanPhysicalDeviceMatch
     {
         public:
 
 
 
-            std::vector<vk::PhysicalDevice> GetSupportedDevices(const std::span<vk::PhysicalDevice>& deviceList);
+            std::vector<PhysicalDeviceMatch> GetSupportedDevices(const std::span<vk::PhysicalDevice>& deviceList);
 
 
         private:
 
-            vk::PhysicalDeviceProperties m_requiredProperties;
+            vk::PhysicalDeviceFeatures m_requiredFeatures;
 
 
     };
